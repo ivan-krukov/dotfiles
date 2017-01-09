@@ -73,9 +73,14 @@ nnoremap <leader>a :Ag<CR>
 " Close other windows in one fell swoop
 nnoremap <leader>z :only<CR>
 
-nnoremap H ^
-nnoremap L $
+" Remap naviagtaion keys for movement
+"" H to go to beginning of line
+xnoremap H ^
+"" L to go to end of line
+xnoremap L $
+"" No join
 nnoremap J <nop>
+"" No doc lookup
 nnoremap K <nop>
 
 colorscheme solarized
