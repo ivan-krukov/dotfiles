@@ -70,6 +70,9 @@ nnoremap <leader>f :Files<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>a :Ag<CR>
 
+" Close other windows in one fell swoop
+nnoremap <leader>z :only<CR>
+
 nnoremap H ^
 nnoremap L $
 nnoremap J <nop>
