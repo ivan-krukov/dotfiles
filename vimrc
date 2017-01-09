@@ -12,6 +12,12 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'flazz/vim-colorschemes'
 Plug 'jpalardy/vim-slime'
 
+" Text objects
+"" User
+Plug 'kana/vim-textobj-user'
+"" Python
+Plug 'bps/vim-textobj-python'
+
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 call plug#end()
 
@@ -32,7 +38,7 @@ set incsearch
 set ignorecase
 set smartcase
 
-set timeout timeoutlen=3000 ttimeoutlen=100
+set timeout timeoutlen=1000 ttimeoutlen=0
 
 set backspace=indent,eol,start
 set autoindent
@@ -124,13 +130,28 @@ set completeopt="menuone"
 nnoremap <leader>g :YcmCompleter GoTo<CR>
 nnoremap <leader>d :YcmCompleter GetDoc<CR>
 
+
 "vimslime
+
+"" Main settings
+""" Tmux is default multiplexer
 let g:slime_target = "tmux"
+""" Do not apply default mappings
 let g:slime_no_mappings = 1
+""" Use default socket, current session, current window, pane #2
 let g:slime_default_config = {"socket_name": "default", "target_pane": ":.2"}
+""" Don't ask anything on startup
 let g:slime_dont_ask_default = 1
+""" Use `cpaste` for `ipython` with `.py` files
 let g:slime_python_ipython = 1
-xmap <leader>r <Plug>SlimeRegionSend
+
+"" Keybindings
+""" Visual mode leader+r to send current selection
+vmap <leader>r <Plug>SlimeRegionSend
+""" Normal mode leader+r to send current line
+nmap <leader>r V<Plug>SlimeRegionSend
+""" Normal mode leader+shift+r to send current function (requires vim-textobj-python)
+nmap <leader>R vaf<Plug>SlimeRegionSend
 
 ":autocmd BufEnter *.png,*.jpg,*gif exec "! ~/.iterm2/imgcat ".expand("%") | :bw
 
